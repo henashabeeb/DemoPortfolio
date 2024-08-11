@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Portfolio - Contact</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    /* Additional styles */
+    #success-message {
+      display: none;
+      color: green;
+      margin-top: 10px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="user">
+      <img src="./Hena_Photo.jpg" alt="Photo of Dr. Hena Mukkath">
+      <h3 class="name">Dr. Hena Mukkath</h3>
+      <p class="post">Lecturer in Computer Science | Cyber Security | Research Assistant | Information and Network Security</p>
+    </div>
+    <nav class="navbar">
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="education.html">Education</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <section class="contact">
+    <h1 class="heading"> <span>Contact </span> Me</h1>
+    <div class="row">
+      <div class="content">
+        <h3 class="title">Contact Info</h3>
+        <div class="info">
+          <h3><i class="fas fa-envelope"></i> hena.m.89@gmail.com</h3>
+          <h3><i class="fas fa-phone"></i> +971 569729938</h3>
+          <h3><i class="fas fa-map-marker-alt"></i> Sharjah, UAE</h3>
+        </div>
+      </div>
+
+      <form id="contact-form" action="https://formspree.io/f/xyzgjnkg" method="POST">
+        <input type="text" placeholder="Name" class="box" name="name" required>
+        <input type="email" placeholder="Email" class="box" name="email" required>
+        <textarea placeholder="Message" class="box message" name="message" required></textarea>
+        <button type="submit" class="btn" name="send">Send <i class="fas fa-paper-plane"></i></button>
+      </form>
+  </section>
+
+  <script>
+    document.getElementById('contact-form').addEventListener('submit', async function(event) {
+        event.preventDefault(); // Prevent the default form submission
+        
+        const form = event.target;
+        const formData = new FormData(form);
+
+        try {
+            const response = await fetch(form.action, {
+                method: form.method,
+                body: formData,
+                headers: {
+                    'Accept': 'application/json'
+                }
+            });
+
+            if (response.ok) {
+              alert('Thank you for contacting me. Will Get back to you soon!!.');
+                //document.getElementById('success-message').style.display = 'block';
+                form.reset(); // Optional: Reset the form fields after successful submission
+            } else {
+                alert('Failed to send your message. Please try again.');
+            }
+        } catch (error) {
+            alert('Failed to send your message. Please try again.');
+        }
+    });
+  </script>
+</body>
+</html>
